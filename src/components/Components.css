@@ -1,0 +1,260 @@
+.Navbar {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    min-width: 900px;
+
+}
+
+.Navbar a {
+    color: black;
+    text-decoration: none;
+    margin: 10px 20px;
+}
+
+.Navbar:hover {
+    color: blue;
+}
+
+.searchbar {
+    width: 60vw;
+
+}
+#searchbarInput {
+    height: 40px;
+
+}
+
+.inventoryCard {
+    width: 300px;
+    height: 300px;
+    border: black solid 1px;
+    margin: 20px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.inventoryCard:hover{
+    /* width: 300px;
+    height: 300px;
+    border: black solid 1px;
+    margin: 20px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
+    background-color: orange;
+}
+
+.modal {
+    position: fixed; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 8; 
+    padding: 20px;
+    width: 800px; 
+    height: 800px;
+    background-color: #fff;
+    border: 1px solid #888;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border-radius: 10px;
+    color: black;
+}
+
+.modalTitle {
+    /* border: black solid 1px; */
+    width: 100%;
+    align-items: flex-start;
+    margin: 2px;
+}
+
+.modalTitle > h2 {
+    margin: 0;
+}
+
+.modal h1 {
+    text-align: center;
+    border: black solid 1px;
+}
+
+.imgHolder {
+    border: black solid 1px;
+    width: 600px;
+    height: 300px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.modalForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+    
+}
+
+.modalForm > #modalFormInput {
+    width: 80%;
+    text-align: center;
+    height: 45px;
+    border-radius: 5px;
+}
+
+.modalForm button {
+    transition: background-color 0.3s ease;
+}
+
+.lossInventoryButtonDiv {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    height: 120px;
+    width: 80%;
+}
+
+.reasonSelector {
+    width: 80%;
+    text-align: center;
+    height: 45px;
+    border-radius: 5px;
+}
+
+#lossButton {
+    margin: 0 20px 0 0;
+    height: 100%;
+    width: 30%;
+}
+
+#lossButton:hover {
+    background-color: red;
+}
+
+.lossSelected {
+    background-color: red;
+}
+
+#inventoryButton {
+    width: 70%;
+}
+
+#inventoryButton:hover {
+    background-color: green;
+}
+
+.inventorySelected {
+    background-color: green;
+}
+
+.submitCancelBtnContainer {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submitCancelBtnContainer button {
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.submitCancelBtnContainer button:hover {
+    background-color: green;
+}
+.currentLossGraph {
+    margin-right: 100px;
+}
+.currentInventoryGraph {
+    /* border: black solid 1px; */
+    width: 600px;
+    height: 100%;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.ProcessConfirmModalButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.ProcessConfirmModalButtons > button {
+    transition: background-color 0.3s ease;
+}
+
+.ProcessConfirmModalButtons > button:hover {
+    background-color: green;
+}
+
+.modal-content div {
+    width: 100%
+}
+
+.modal-content h2 {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-content ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.processConfirmModalDiv {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+h4 {
+    margin: 0px;
+    text-wrap: auto;
+    text-align: center;
+    color: red;
+}
