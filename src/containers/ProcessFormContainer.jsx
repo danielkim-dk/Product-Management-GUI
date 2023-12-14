@@ -9,7 +9,6 @@ function ProcessFormContainer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [changesToConfirm, setChangesToConfirm] = useState({});
 
-  // Calculate the total weight for each category
 
   const categoryTotals = useMemo(() => {
     const totals = {};

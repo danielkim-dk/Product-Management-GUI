@@ -5,12 +5,10 @@ inventoryController.createInventory = async (req, res) => {
     try {
         const { product, current_weight, bucket_name, reason } = req.body;
 
-        // Validation
         if (typeof product !== 'string' || typeof bucket_name !== 'string' || typeof reason !== 'string') {
             return res.status(400).json({ message: 'Invalid input types' });
         }
 
-        // Convert current_weight to a number
         const weight = parseFloat(current_weight);
         if (isNaN(weight)) {
             return res.status(400).json({ message: 'current_weight must be a number' });

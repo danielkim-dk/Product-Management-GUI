@@ -54,7 +54,6 @@ export const InventoryProvider = ({ children }) => {
                 },
             });
             const allProducts = await response.json();
-            // console.log('Products List: ', allProducts);
             setProducts(allProducts);
         } catch (err) {
             console.error('Error in getProducts Fetch: ', err)
@@ -65,7 +64,6 @@ export const InventoryProvider = ({ children }) => {
         try {
             const response = await fetch(`http://localhost:5173/api/inventory`);
             const allInventory = await response.json();
-            // console.log('Inventory List: ', allInventory);
             setInventory(allInventory);
         } catch (err) {
             console.error('Error in getInventory Fetch: ', err)
@@ -76,7 +74,7 @@ export const InventoryProvider = ({ children }) => {
         console.log('transfer inventory running')
         try {
             const response = await fetch(`http://localhost:5173/api/categoryInventory/transfer`, {
-                method: 'POST',  // Specify the method
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -85,8 +83,7 @@ export const InventoryProvider = ({ children }) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            // const { transferredItems, processedItemsCount } = await response.json();
-            // console.log('transferredItems: ', transferredItems)
+
         } catch (err) {
             console.error('Error during inventory transfer: ', err);
         } finally {
@@ -134,7 +131,6 @@ export const InventoryProvider = ({ children }) => {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
       
-          // Handle the response here, e.g., updating state or showing a success message
           console.log("Categories processed successfully");
         } catch (err) {
           console.error('Error during processing categories: ', err);

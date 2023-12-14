@@ -2,7 +2,6 @@
     width: 95vw;
     height: 90vh;
     margin: 20px;
-    /* min-width: 900px; */
     background-color: white;
 
 }
@@ -29,7 +28,6 @@
     flex-wrap: wrap;
     height: calc(90vh - 90px);
     overflow-y: auto;
-    /* overflow: hidden; */
 }
 
 .ProcessInventoryDataContainer {

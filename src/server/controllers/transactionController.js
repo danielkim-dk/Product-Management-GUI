@@ -16,11 +16,6 @@ transactionController.createTransaction = async (req, res) => {
     try {
         const { bucket_name, transaction_weight } = req.body;
 
-        // Validation
-        // if (typeof bucket_name !== 'string') {
-        //     return res.status(400).json({ message: 'Invalid input types' });
-        // }
-
         const weight = parseFloat(transaction_weight);
         if (isNaN(weight)) {
             return res.status(400).json({ message: 'transaction_weight must be a number' });

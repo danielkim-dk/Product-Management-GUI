@@ -2,7 +2,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { InventoryContext } from '../contexts/InventoryContext';
 import Searchbar from '../components/Searchbar';
-// import InventoryCard from '../components/InventoryCard';
 import './Containers.css';
 import CardContainer from './CardContainer';
 

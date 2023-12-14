@@ -8,8 +8,6 @@ categoryInventoryController.findAllNonArchivedInventory = async (req, res) => {
         if (allNonArchivedInventory.length === 0) {
             return res.status(200).json({ message: 'No inventory items found' });
         } else {
-            // res.locals.inventory = allNonArchivedInventory;
-            // return next();
             return res.status(200).json(allNonArchivedInventory);
         }
     } catch (err) {

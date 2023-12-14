@@ -22,7 +22,7 @@ function CurrentLossGraph() {
         labels: ['Inventory', 'Loss'],
         datasets: [{
             label: 'Total Pounds',
-            data: [inventoryWeight, lossWeight], // First element is inventory weight, second is loss weight
+            data: [inventoryWeight, lossWeight],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.6)',
                 'rgba(255, 99, 132, 0.6)'
