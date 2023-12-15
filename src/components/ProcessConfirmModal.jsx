@@ -1,5 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react'
 
+// reusable component for modal
 function ProcessConfirmModal({ children, onClose }) {
     return (
         <div className="modal-overlay" onClick={onClose}>

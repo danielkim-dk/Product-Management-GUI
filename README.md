@@ -48,4 +48,25 @@ npm install
 npm start
 ```
 
+## Project Summary
 
+This GUI helps manage LPD inventory. 
+Initially, products are scanned into the system and categorized into various types such as boneless beef, chicken, bone-in pork, etc. 
+This categorization is based on the current methods. 
+
+1. Inventory Management: 
+- After the initial scan, products are divided into two primary buckets: 'Loss' for items to be discarded and 'Inventory' for good items.
+- Items are marked as 'processed' once they are assigned to a specific category.
+- This doesn't mean they are processed into goods yet, but rather that they have been sorted and categorized.
+
+2. Transaction Handling: 
+- Each time items are moved from the 'Inventory' bucket for processing or donation, a transaction is recorded. 
+- This session records the change in status from 'Inventory' to either 'Process' or 'Donate', depending on the action taken.
+
+3. Rebalancing Feature:
+- Items are transferred from the 'Inventory' to 'Process' as needed. 
+- When it’s time to donate, the remaining items in 'Inventory' are tagged as 'Donate', and all current transactions are archived (each transaction has an archived column set initially to false).
+
+4. GUI Features: 
+- The GUI offers real-time inventory level display, functionalities to manage (process or donate) inventory items, and the capability to reset inventory counts.
+- It retains data for future analysis, ensuring traceability and efficient inventory management.

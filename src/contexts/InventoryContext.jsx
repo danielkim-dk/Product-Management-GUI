@@ -1,17 +1,22 @@
 // eslint-disable-next-line no-unused-vars
 import React, { createContext, useState, useEffect } from 'react';
 
+// Used by components to access and modify global state
 export const InventoryContext = createContext();
 
 //TODO: create state to track loading and error states to display in UI
 
+// Provider component that wraps app and makes global state available to all components
 export const InventoryProvider = ({ children }) => {
+    // These are the global state variables that will be made available to all components
     const [inventory, setInventory] = useState([]);
     const [categoryInventory, setCategoryInventory] = useState([]);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [addedInventory, setAddedInventory] = useState(false);
 
+    // This function is used to an existing inventory item
+    // Currently not in use 
     const updateInventoryItem = (updatedItem) => {
         setInventory(prevInventory =>
             prevInventory.map(item =>
@@ -20,6 +25,8 @@ export const InventoryProvider = ({ children }) => {
         );
     };
 
+    // This function is used to add a new inventory item
+    // Currently takes data from inventoryCardModal and does a POST request to the inventory API 
     const addInventoryItem = async (inventoryItem) => { 
         const item = { 
             product: inventoryItem.product, 
@@ -45,6 +52,8 @@ export const InventoryProvider = ({ children }) => {
         setAddedInventory(true);
     }
 
+    // This function is used to get all products from the products API
+    // Used at initial render to populate the products state variable
     const getProducts = async () => {
         try {
             const response = await fetch(`http://localhost:5173/api/products`, {
@@ -60,6 +69,8 @@ export const InventoryProvider = ({ children }) => {
         }
     };
 
+    // This function is used to get all inventory items from the inventory API
+    // Used at initial render to populate the inventory state variable
     const getInventory = async () => {
         try {
             const response = await fetch(`http://localhost:5173/api/inventory`);
@@ -70,6 +81,9 @@ export const InventoryProvider = ({ children }) => {
         }
     };
 
+    // This function is used to transfer inventory items from the inventory API to the categoryInventory API
+    // Currently triggers when ProcessInventoryDataContainer renders -- when moving from main page to process page
+    // It only triggers when the addedInventory state is true
     const transferInventory = async () => {
         console.log('transfer inventory running')
         try {
@@ -91,6 +105,9 @@ export const InventoryProvider = ({ children }) => {
         }
     };
 
+    // This function is used to get all category inventory items from the categoryInventory API
+    // It triggers when addedInventory state changes or when we confirm to process inventory in ProcessFormContainer
+    // If no inventory items are found, we set the categoryInventory state to an empty array
     const getCategoryInventory = async () => {
         try {
             const response = await fetch(`http://localhost:5173/api/categoryInventory`, {
@@ -117,6 +134,9 @@ export const InventoryProvider = ({ children }) => {
         }
     };
 
+    // This function is used to process inventory items from the categoryInventory API
+    // It triggers when we confirm to process inventory in ProcessFormContainer
+    // It changes the bucket_name of the bucket_name from 'inventory' to 'processed'
     const processCategories = async (categoriesData) => {
         try {
           const response = await fetch(`http://localhost:5173/api/categoryInventory/process`, {
@@ -137,6 +157,9 @@ export const InventoryProvider = ({ children }) => {
         }
     };
 
+    // This function is used to donate inventory items from the categoryInventory API
+    // It triggers when we confirm to donate inventory in ProcessFormContainer
+    // It changes the bucket_name of all remaining 'inventory' to 'donate' and archived to true
     const donateInventory = async () => {
         try {
             const response = await fetch(`http://localhost:5173/api/categoryInventory/donate`, {
@@ -157,7 +180,7 @@ export const InventoryProvider = ({ children }) => {
         }
     };
 
-    
+    // fills global state variables on render / changes in addedInventory state
     useEffect(() => {
         getCategoryInventory();
     }, [addedInventory]);
@@ -170,6 +193,8 @@ export const InventoryProvider = ({ children }) => {
         getProducts();
     }, []);
 
+    // sets categories state variable on render / changes in products state 
+    // TODO: need to refactor when changing to real database
     useEffect(() => {
         if (products && products.length > 0) {
             const uniqueCategories = Array.from(new Set(products.map(product => product.category)));

@@ -2,15 +2,18 @@ import pkg from 'pg';
 import dotenv from 'dotenv';
 const {Pool} = pkg;
 
-
+// Load environment variables from .env file
 dotenv.config();
 
+// Get the PostgreSQL connection string from environment variables
 let PG_URL = process.env.PG_URL
 
+// Create a new pool of clients using the connection string
 const pool = new Pool({
     connectionString: PG_URL
 })
 
+// Function to create tables in the database
 const createTables = async () => {
     try {
         await pool.query(`

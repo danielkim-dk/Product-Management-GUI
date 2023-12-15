@@ -4,13 +4,18 @@ import PropTypes from 'prop-types';
 import { InventoryContext } from '../contexts/InventoryContext';
 import './Components.css';
 
+// Define the prop types for the InventoryCardModal component
 InventoryCardModal.propTypes = {
     handleModalClose: PropTypes.func,
     item: PropTypes.any
 }
 
+// The InventoryCardModal component is responsible for managing and displaying the modal for editing an inventory item.
 function InventoryCardModal({ handleModalClose, item }) {
+    // Use the InventoryContext to get the function to add an inventory item
     const { addInventoryItem } = useContext(InventoryContext);
+
+    // These states are used to manage the input values and errors, and whether the custom reason input is shown
     const [weight, setWeight] = useState(item.weight || '');
     const [bucket, setBucket] = useState(item.bucket || '');
     const [reason, setReason] = useState(item.reason || '');
@@ -21,6 +26,8 @@ function InventoryCardModal({ handleModalClose, item }) {
 
     const product = item.product;
 
+    // This function is used to handle reason changes. It checks if the entered reason is '+ add reason' and shows the custom reason input accordingly.
+    // TODO: create a table for reasons and update the dropdown of reasons
     const handleReasonChange = (e) => {
         if (e.target.value === '+ add reason') {
             setReason(e.target.value);
@@ -32,10 +39,13 @@ function InventoryCardModal({ handleModalClose, item }) {
         }
     }
 
+    // This sets the custom reason to the entered value.
     const handleCustomReasonChange = (e) => {
         setCustomReason(e.target.value);
     };
 
+    // This function is used to handle weight changes. 
+    // It checks if the entered weight is a number with up to 2 decimal places and sets the weight and input error accordingly.
     const handleWeightChange = (e) => {
         const value = e.target.value;
         const reg = /^\d*\.?\d{0,2}$/;
@@ -47,28 +57,35 @@ function InventoryCardModal({ handleModalClose, item }) {
         }
     };
 
+    // This sets the bucket to the entered value.
     const handleBucketChange = (bucketValue) => {
         setBucket(bucketValue);
     }
 
+    // This function is used to handle form submission. It prevents the default form submission behavior, checks for input errors, and adds the inventory item.
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Determine the final reason based on whether the custom reason input is shown
         const finalReason = showCustomReasonInput ? customReason : reason;
 
+        // If there is an input error, show an alert and return
         if (inputError) {
             alert('Weight must be a number with up to 2 decimal places');
             return;
         }
 
+        // If any of the fields are empty, show an alert and return
         if (!weight || !bucket || !reason) {
             alert('Please fill out all fields correctly.')
             return;
         }
 
+        // Create the updated item and add it to the inventory
         const updatedItem = { product, weight, category, bucket, reason: finalReason };
         addInventoryItem(updatedItem);
 
+        // Reset the input values and errors, and close the modal
         setWeight(weight || '');
         setBucket('');
         setReason('');
@@ -79,6 +96,9 @@ function InventoryCardModal({ handleModalClose, item }) {
         handleModalClose();
     }
 
+    // The component returns a modal overlay that contains the product title, an image, and a form for editing the inventory item.
+    // The form contains an input for the weight, buttons for 'loss' or 'inventory', a reason selector, and a submit button.
+    // When the form is submitted, the handleSubmit function is called.
     return (
         <div className='modal-overlay'>
             <div className='modal'>

@@ -7,7 +7,9 @@ import transactionsRouter from './routes/transactions.js'
 import categoryInventoryRouter from './routes/categoryInventory.js'
 import cors from 'cors';
 
+// Initialize express application
 const app = express();
+// Define the port on which the server will listen
 const PORT = 3002;
 
 app.use(cors());
@@ -17,16 +19,19 @@ app.use(express.urlencoded({ extended: true }));
 /**
  * TODO: api/transactions not being used at the moment. 
  * * /api/products and /api/inventory used initially but actual inventory tracking is done with categoryInventory
+ * These are the routes
  */
 app.use('/api/products', productsRouter);
 app.use('/api/inventory', inventoryRouter);
 app.use('/api/transactions', transactionsRouter);
 app.use('/api/categoryInventory', categoryInventoryRouter);
 
+// Define a catch-all route for any undefined routes
 app.use('*', (req, res) => {
     res.status(404).send('CatchAll Error');
 });
 
+// A global error handler
 app.use((err, req, res) => {
     const defaultError = {
       log: 'Express error handler caught unknown middleware error',

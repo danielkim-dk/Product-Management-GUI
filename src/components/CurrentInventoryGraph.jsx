@@ -5,11 +5,15 @@ import { Bar } from "react-chartjs-2";
 import { InventoryContext } from '../contexts/InventoryContext';
 import './Components.css';
 
+// Register necessary components from Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
+// The CurrentInventoryGraph component is responsible for displaying a bar graph of the current inventory.
 function CurrentInventoryGraph() {
+    // Use the InventoryContext to get the category inventory
     const { categoryInventory } = useContext(InventoryContext);
 
+    // Prepare the data for the bar graph using useMemo for performance optimization
     const chartData = useMemo(() => {
         const filteredInventory = categoryInventory.filter(item => item.bucket_name === 'inventory');
 
@@ -28,6 +32,7 @@ function CurrentInventoryGraph() {
         };
     }, [categoryInventory]);
     
+    // Define the options for the bar graph
     const chartOptions = {
         responsive: true,
         plugins: {
@@ -55,8 +60,9 @@ function CurrentInventoryGraph() {
                 }
             }
         }
-    }
+    };
 
+    // The Bar component is only rendered if categoryInventory is not empty.
     return (
         <div className='currentInventoryGraph'>
             {categoryInventory && categoryInventory.length > 0 && <Bar data={chartData} options={chartOptions} />}
