@@ -36,10 +36,20 @@ function ProcessFormContainer() {
     const enteredWeight = parseFloat(value);
 
     // If the entered weight is greater than the available weight, add an error for the category
-    if (enteredWeight > weightAvailable) {
+    if (enteredWeight === 0) {
       setErrors(prevErrors => ({
         ...prevErrors,
-        [category]: `Cannot exceed available weight of ${weightAvailable.toFixed(2)} lbs`
+        [category]: `Input new weight. Cannot be 0`
+      }));
+    } else if (enteredWeight < 0) {
+      setErrors(prevErrors => ({
+        ...prevErrors,
+        [category]: `Cannot have negative weight`
+      }));
+    } else if (enteredWeight > weightAvailable) {
+      setErrors(prevErrors => ({
+        ...prevErrors,
+        [category]: `Input new weight ${weightAvailable.toFixed(2)} lbs not available`
       }));
     } else {
       // If the entered weight is less than or equal to the available weight, remove any existing error for the category
