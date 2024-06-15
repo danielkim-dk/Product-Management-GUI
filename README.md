@@ -1,4 +1,4 @@
-# WaldenGUI
+# Product-Management-GUI
 
 A simple GUI to track inventory for the LPD bucket
 
